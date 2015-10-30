@@ -1,0 +1,11 @@
+#include "IEC61850.h"
+
+
+bool Speak:Run(){
+    return Execute();
+    }
+    
+bool Listen:Run(){
+    return Execute();
+    }
+

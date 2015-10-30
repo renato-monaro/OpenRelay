@@ -1,0 +1,4 @@
+acquisition/IEC61850.lo: acquisition/IEC61850.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

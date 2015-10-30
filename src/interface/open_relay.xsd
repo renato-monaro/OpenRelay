@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" elementFormDefault="qualified">
+
+<xs:element name="RELAY">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="CHANNELS" minOccurs="1">
+				<xs:complexType>
+					<xs:choice minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="ANALOGIC">
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL" maxOccurs="unbounded">
+										<xs:complexType>
+												<xs:attribute name="name" type="xs:string" use="required"/>
+												<xs:attribute name="direction" type="xs:boolean"/>
+												<xs:attribute name="channel" type="xs:unsignedInt"/>
+												<xs:attribute name="ratio" type="xs:float"/>
+												<xs:attribute name="offset" type="xs:float"/>
+												<xs:attribute name="low" type="xs:double"/>
+												<xs:attribute name="up" type="xs:double"/>
+										</xs:complexType>
+									</xs:element>	
+								</xs:choice>				
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DIGITAL">
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL" maxOccurs="unbounded">
+										<xs:complexType>
+												<xs:attribute name="name" type="xs:string" use="required"/>
+												<xs:attribute name="direction" type="xs:boolean"/>
+												<xs:attribute name="channel" type="xs:unsignedInt"/>
+												<xs:attribute name="ratio" type="xs:float"/>
+												<xs:attribute name="offset" type="xs:float"/>
+												<xs:attribute name="low" type="xs:double"/>
+												<xs:attribute name="up" type="xs:double"/>
+										</xs:complexType>
+									</xs:element>	
+								</xs:choice>				
+							</xs:complexType>
+						</xs:element>
+            			<xs:element name="COMPLEX">
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL" maxOccurs="unbounded">
+										<xs:complexType>
+												<xs:attribute name="name" type="xs:string" use="required"/>
+												<xs:attribute name="direction" type="xs:boolean"/>
+												<xs:attribute name="channel" type="xs:unsignedInt"/>
+												<xs:attribute name="ratio" type="xs:float"/>
+												<xs:attribute name="offset" type="xs:float"/>
+												<xs:attribute name="low" type="xs:double"/>
+												<xs:attribute name="up" type="xs:double"/>
+										</xs:complexType>
+									</xs:element>	
+								</xs:choice>				
+							</xs:complexType>
+						</xs:element> 
+					</xs:choice>
+				</xs:complexType>					
+			</xs:element>     
+			<xs:element name="ACQUISITION">
+				<xs:complexType>
+					<xs:choice minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="FILE_ACQUISITION">  
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="filename" type="xs:string" use="required"/>
+								<xs:attribute name="bits" type="xs:unsignedInt"/>
+							</xs:complexType>
+						</xs:element>    
+						<xs:element name="HARDWARE_ACQUISITION">  
+							<xs:complexType>	
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="device" type="xs:normalizedString" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MEASURE" minOccurs="0">
+				<xs:complexType>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="ABS">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DFT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="freq" type="xs:float" use="required"/>
+								<xs:attribute name="harm" type="xs:unsignedInt"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FREQUENCY">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="met" type="xs:int" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="MEAN">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string"  use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="n_samples" type="xs:unsignedInt"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="POWER">
+							<xs:complexType>
+								<xs:attribute name="ch_in_i_1" type="xs:string" use="required"/>
+								<xs:attribute name="ch_in_i_2" type="xs:string"/>
+								<xs:attribute name="ch_in_i_3" type="xs:string"/>
+								<xs:attribute name="ch_in_v_1" type="xs:string" use="required"/>
+								<xs:attribute name="ch_in_v_2" type="xs:string"/>
+								<xs:attribute name="ch_in_v_3" type="xs:string"/>
+								<xs:attribute name="ch_out_s" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out_p" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out_q" type="xs:string" use="required"/>
+								<xs:attribute name="freq" type="xs:float" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="RMS">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_in_freq" type="xs:string"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SCALE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="gain" type="xs:double" use="required"/>
+								<xs:attribute name="offset" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="STRING_COMPOSER">
+							<xs:complexType>
+								<xs:attribute name="str" type="xs:string" use="required"/>
+								<xs:attribute name="sep" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SUM">
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>	
+	  							</xs:choice>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="WANG_SUN_FREQUENCY">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="ch_tr" type="xs:string" use="required"/>
+								<xs:attribute name="total_length" type="xs:unsignedInt" use="required"/>
+								<xs:attribute name="step" type="xs:unsignedInt" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ZERO_CROSS_DETECTION">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PROTECTION" minOccurs="0">
+				<xs:complexType>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="DIFFERENTIAL">
+							<xs:complexType>
+							<xs:attribute name="ch_in_1" type="xs:string" use="required"/>
+							<xs:attribute name="ch_in_2" type="xs:string" use="required"/>
+							<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							<xs:attribute name="in" type="xs:double" use="required"/>
+							<xs:attribute name="pick_up_1" type="xs:double" use="required"/>
+							<xs:attribute name="base_point_1" type="xs:double" use="required"/>
+							<xs:attribute name="slope_1" type="xs:double" use="required"/>
+							<xs:attribute name="pick_up_2" type="xs:double" use="required"/>
+							<xs:attribute name="base_point_2" type="xs:double" use="required"/>
+							<xs:attribute name="slope_2" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DIFFERENTIAL_SPLINE">
+							<xs:complexType>
+								<xs:attribute name="ch_in_1" type="xs:string" use="required"/>
+								<xs:attribute name="ch_in_2" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="in" type="xs:double" use="required"/>
+								<xs:attribute name="pick_up" type="xs:double" use="required"/>
+								<xs:attribute name="break_point_1" type="xs:double" use="required"/>
+								<xs:attribute name="slope_1" type="xs:double" use="required"/>
+								<xs:attribute name="break_point_2" type="xs:double" use="required"/>
+								<xs:attribute name="slope_2" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DEFINITE_TIME_OVER_CURRENT">
+							<xs:complexType>
+							<xs:attribute name="ch_in" type="xs:string" use="required"/>
+							<xs:attribute name="ch_out" type="xs:string" use="required"/>
+							<xs:attribute name="pick" type="xs:double" use="required"/>
+							<xs:attribute name="dial" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="DEFINITE_TIME_OVER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+							</xs:complexType>
+							</xs:element>
+							<xs:element name="DEFINITE_TIME_UNDER_CURRENT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DEFINITE_TIME_UNDER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INSTANTANEOUS_OVER_CURRENT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="INSTANTANEOUS_OVER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="INSTANTANEOUS_UNDER_CURRENT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INSTANTANEOUS_UNDER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INVERSE_TIME_OVER_CURRENT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+								<xs:attribute name="type" type="xs:unsignedInt" use="required"/>
+								<xs:attribute name="reset" type="xs:boolean"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INVERSE_TIME_OVER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+								<xs:attribute name="type" type="xs:unsignedInt" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INVERSE_TIME_UNDER_CURRENT">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+								<xs:attribute name="type" type="xs:unsignedInt" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+						<xs:element name="INVERSE_TIME_UNDER_VOLTAGE">
+							<xs:complexType>
+								<xs:attribute name="ch_in" type="xs:string" use="required"/>
+								<xs:attribute name="ch_out" type="xs:string" use="required"/>
+								<xs:attribute name="pick" type="xs:double" use="required"/>
+								<xs:attribute name="dial" type="xs:double" use="required"/>
+								<xs:attribute name="type" type="xs:unsignedInt" use="required"/>
+							</xs:complexType>
+						</xs:element> 
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>	
+			<xs:element name="OSCILLOGRAPHY" minOccurs="0">
+				<xs:complexType>
+					<xs:choice minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="CHANNEL">
+							<xs:complexType>
+								<xs:attribute name="name" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>	
+					</xs:choice>
+					<xs:attribute name="trig" type="xs:string" use="required"/>
+					<xs:attribute name="before_cicles" type="xs:int" use="required"/>
+					<xs:attribute name="after_cicles" type="xs:int" use="required"/>
+					<xs:attribute name="frequency" type="xs:float" use="required"/>
+					<xs:attribute name="save_folder" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DISPLAY" minOccurs="0">
+				<xs:complexType>
+					<xs:choice minOccurs="1" maxOccurs="unbounded">
+						<xs:element name="NSCREEN">
+							<xs:complexType>
+								<xs:choice minOccurs="1" maxOccurs="unbounded">
+									<xs:element name="CHANNEL">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>	
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="buffer" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="sampling" type="xs:float" use="required"/>
+	</xs:complexType>
+</xs:element>
+
+</xs:schema>
+

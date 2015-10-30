@@ -1,0 +1,6 @@
+acquisition/acquisitiongoose.lo: acquisition/acquisitiongoose.cpp \
+ /usr/include/stdc-predef.h acquisition/acquisitiongoose.h
+
+/usr/include/stdc-predef.h:
+
+acquisition/acquisitiongoose.h:

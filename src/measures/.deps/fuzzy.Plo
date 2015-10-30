@@ -1,0 +1,6 @@
+measures/fuzzy.lo: measures/fuzzy.cpp /usr/include/stdc-predef.h \
+ measures/fuzzy.h
+
+/usr/include/stdc-predef.h:
+
+measures/fuzzy.h:
