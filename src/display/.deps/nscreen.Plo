@@ -1,6 +1,0 @@
-display/nscreen.lo: display/nscreen.cpp /usr/include/stdc-predef.h \
- display/nscreen.h
-
-/usr/include/stdc-predef.h:
-
-display/nscreen.h:
