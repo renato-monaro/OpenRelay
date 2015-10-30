@@ -1,0 +1,78 @@
+\documentclass[12pt,a4paper]{book}
+ 
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}            % Caso tenha problemas ao usar UTF-8, experimente \usepackage{ucs}
+\usepackage{indentfirst}       % indenta os primeiros parágrafos
+\usepackage{amssymb,amsmath}   % simbolos matemáticos providos pela AMS
+\usepackage[dvipdfm]{graphicx} % para inclusão de figuras (png, jpg, gif, bmp)
+\usepackage{graphics}          % figuras gráficas
+\usepackage{color}             % para letras e caixas coloridas
+\usepackage{makeidx}           % índice remissivo
+%\usepackage{a4wide}            % correta formatação da página em A4
+\usepackage{setspace}          % para a distância entre linhas
+\usepackage{lscape}
+\usepackage{xspace}
+%Pacote para hyperlink no PDF
+\usepackage[dvipdfm,dvips]{hyperref}
+\usepackage{wasysym}
+%Alterar Captions
+\usepackage[small]{caption}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[printonlyused]{acronym}
+\usepackage{rotating}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{fancybox}
+\usepackage{manual}
+\usepackage{float}
+
+
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\usepackage{float}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage{doxygen}
+\usepackage{verbatim}
+
+
+\title{Manual}
+\author{Laboratório de Sistemas de Energia Elétrica}
+ 
+\begin{document}
+\maketitle
+\newpage
+\pagenumbering{roman}
+\tableofcontents   % Sumário
+\newpage
+\listoffigures
+\newpage
+\listoftables  % Lista de Tabelas
+\newpage
+\lstlistoflistings
+\newpage
+\doublespacing % páginas em algarismos romanos
+\newpage
+\input{resumo}
+\include{abreviaturas} %Abreviaturas
+\pagenumbering{arabic}  % fim da numeração das páginas em algarismos romanos
+\input{introducao}
+\input{org_da_bib}
+\input{canais}
+\input{aquisicao}
+\input{medicao}
+\input{protecao}
+\input{oscilografia}
+\input{impressao}
+\input{relay}
+\input{fluxo}
+\input{exemplo}
+\bibliography{bibliografia} % bibname=nome do seu arquivo BibTeX
+
+\chapter{Documentação do Código Fonte}\label{ch:documentacao}
+
