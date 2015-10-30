@@ -1,3 +1,4 @@
+/*
 # Copyright (C) 2008-2015 Renato Machado Monaro
 # This file is part of OpenRelay.
 #
@@ -12,6 +13,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
+*/
 #include "oscillography.h"
 
 using namespace orelay;

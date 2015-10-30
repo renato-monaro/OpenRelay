@@ -17,9 +17,8 @@
 
 #ifndef GENERATOR_H
 #define GENERATOR_H
-#include "channel.h"
-#include "parameters.h"
-#include "types.h"
+#include "protection.h"
+
 namespace orelay{
 class IDesbalanceadasG30: public Protection{
 	public:

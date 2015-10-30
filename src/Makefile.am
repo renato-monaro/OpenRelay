@@ -10,6 +10,7 @@ display/nscreen.cpp \
 measures/measures.cpp  measures/rna.cpp measures/WangSunFrequency.cpp measures/fuzzy.cpp measures/wavelet.cpp measures/switch.cpp\
 logic/logic.cpp \
 protection/protection.cpp \
+protection/generator.cpp \
 savedata/oscillography.cpp\
 acquisition/IEC61850.cpp
 #interface/openrelayxml.cpp 
@@ -22,6 +23,7 @@ display/nscreen.h \
 logic/logic.h \
 measures/measures.h measures/rna.h measures/WangSunFrequency.h measures/fuzzy.h measures/wavelet.h measures/switch.h \
 protection/protection.h \
+protection/generator.h \
 savedata/oscillography.h\
 acquisition/IEC61850.h
 #interface/openrelayxml.h

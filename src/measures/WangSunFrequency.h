@@ -1,4 +1,5 @@
-# Copyright (C) 2008-2015 Renato Machado Monaro
+/*
+# Copyright (C) 2010-2015 Rapahel Phillipe
 # This file is part of OpenRelay.
 #
 # OpenRelay is free software: you can redistribute it and/or modify
@@ -12,6 +13,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
+*/
 /*
  * WangSunFrequency.h
  *
