@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU General Public License
 */
 
+#ifndef PHASOR_H
+#define PHASOR_H
+
 #include <relay.h>
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_matrix.h>
@@ -187,4 +190,4 @@ class DWT: public Measure{
         bool neworder;
         void Transformada_Wavelet(double* f, long n,bool ordem);
 };
-
+#endif

@@ -7,7 +7,7 @@ libopenrelay_@OPENRELAY_API_VERSION@_la_SOURCES = filter.cpp relay.cpp types.cpp
 acquisition/acquisition.cpp acquisition/encoder.cpp \
 control/control.cpp \
 display/nscreen.cpp \
-measures/measures.cpp  measures/rna.cpp measures/WangSunFrequency.cpp measures/fuzzy.cpp measures/wavelet.cpp measures/switch.cpp\
+measures/measures.cpp  measures/rna.cpp measures/WangSunFrequency.cpp measures/fuzzy.cpp measures/wavelet.cpp measures/switch.cpp measures/ddf.cpp measures/phasor.cpp\
 logic/logic.cpp \
 protection/protection.cpp \
 protection/generator.cpp \
@@ -21,7 +21,7 @@ acquisition/acquisition.h acquisition/encoder.h \
 control/control.h \
 display/nscreen.h \
 logic/logic.h \
-measures/measures.h measures/rna.h measures/WangSunFrequency.h measures/fuzzy.h measures/wavelet.h measures/switch.h \
+measures/measures.h measures/rna.h measures/WangSunFrequency.h measures/fuzzy.h measures/wavelet.h measures/switch.h measures/ddf.h measures/phasor.h\
 protection/protection.h \
 protection/generator.h \
 savedata/oscillography.h\

@@ -25,6 +25,8 @@
 #include <measures/measures.h>
 #include <measures/wavelet.h>
 #include <measures/switch.h>
+#include <measures/ddf.h>
+#include <measures/phasor.h>
 #include <control/control.h>
 #include <savedata/oscillography.h>
 #ifdef NCURSES

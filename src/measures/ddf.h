@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU General Public License
 */
 
+#ifndef DDF_H
+#define DDF_H
+
 #include <relay.h>
 #include <iostream>
 #include <fstream>
@@ -40,4 +43,4 @@ class DDF: public Measure{
 		unsigned N;
 		float b[3],a[1],z[3];
 };
-
+#endif
