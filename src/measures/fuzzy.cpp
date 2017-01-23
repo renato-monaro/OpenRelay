@@ -14,10 +14,12 @@
 #
 # You should have received a copy of the GNU General Public License
 */
+
+#ifdef FUZZYLITE
 #include "fuzzy.h"
 
 
-#ifdef FUZZY
+
 using namespace orelay;
 int myPow(int x, int p)
 {

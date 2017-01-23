@@ -20,6 +20,7 @@
 #include <vector>
 #include "measures.h"
 #include "channel.h"  
+
 namespace orelay{
 enum {haar=0,daub4,daub6,daub8,daub10,daub12,daub14,daub16,daub18,daub20,daub22,daub24,daub26,daub28,\
 	daub30,daub32,daub34,daub36,daub38,daub40,daub42,daub44,daub46,daub48,\
@@ -27,15 +28,18 @@ enum {haar=0,daub4,daub6,daub8,daub10,daub12,daub14,daub16,daub18,daub20,daub22,
 	daub72,daub74,daub76,sym8,sym16,coif6,coif12,coif18,coif24,coif30,beylkin18,vaidyanathan24\
 	};
 
-enum {WAVELET_RMS=0,WAVELET_ENERGY};//,WAVELET_ENTROPY,WAVELET_FILTER};
+enum {WAVELET_RMS=0,WAVELET_ENERGY,WAVELET_ENERGY_PER};//,WAVELET_ENTROPY,WAVELET_FILTER};
+
 
 class Wavelet: public Measure{
 	public:
 		Wavelet(Channel<analogic> *CH_IN,Channel<analogic> *CH_OUT, unsigned N, unsigned Family,unsigned Met);
+		Wavelet(){};
 		void Leafs(unsigned char ad,unsigned Nad,unsigned Level);
 		virtual void Run(); 
 		bool Prepare(float);
 	protected:
+		vector<double> cD,cA;
 		bool getFilterBank();
 		Channel <analogic> *Input;
 		Channel <analogic> *Output;
@@ -49,6 +53,14 @@ class Wavelet: public Measure{
 		vector<unsigned> PosIni,PosFim;
 		vector<bool> Ordem;
 		void Transformada_Wavelet(double* f, long n,bool ordem);
+	};
+	
+class WaveletMat: public Wavelet{
+	public:
+		WaveletMat(){};
+		WaveletMat(Channel<analogic> *CH_IN,Channel<analogic> *CH_OUT, unsigned N, unsigned Family,unsigned Met);
+		virtual void Run(); 
+	void Transformada_Wavelet(vector<double> &f, int,int);
 	};
 }
 #endif/* !WAVELET_H */

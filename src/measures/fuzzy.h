@@ -17,7 +17,7 @@
 #ifndef FUZZY_H
 #define FUZZY_H
 
-#ifdef FUZZY
+#ifdef FUZZYLITE
 #include <fl/Headers.h>
 #include <vector>
 #include "measures.h"
@@ -26,7 +26,9 @@
 #include <fstream>
 #include <iostream>
 
+
 namespace orelay{
+
 class Fuzzy: public Measure{
 	public:
 		Fuzzy(fl::Engine *);

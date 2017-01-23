@@ -31,12 +31,13 @@ void Wavelet::Transformada_Wavelet(double* f, long n,bool ordem)
 	double *h=new double[FilterBank.size()];
 
 	for(int i=0;i<FilterBank.size();i++)
-		h[i]=FilterBank[i];
+		g[i]=FilterBank[i];
 	for(int i=0;i<FilterBank.size();i++){
-	        g[i]=h[ch-i-1];
+	        h[i]=g[ch-i-1];
 		if(i%2!=0)
-			g[i]*=-1;
+			h[i]*=-1;
 		}
+
 int cg=ch;
 long j=0;
 double* t = new double[n];
@@ -74,9 +75,28 @@ else // i de invertido para wavelet packet
      	 	j++;
      	 	}
 	}
+	
+/*			printf("N %d ",n);
+	for(int k=0;k<FilterBank.size();k++){
+			printf("g[%d]=%lf ",k,g[k]);
+		}
+		printf("\n");
+		for(int k=0;k<FilterBank.size();k++){
+			printf("h[%d]=%lf ",k,h[k]);
+		}*/
+	/*			printf("\n");
+		for(int k=0;k<n;k++){
+			printf("f[%d]=%lf ",k,f[k]);
+		}
+		
+			printf("\n");
+		for(int k=0;k<n;k++){
+			printf("t[%d]=%lf ",k,t[k]);
+		}
+		
 for(long i=0;i<n;i++)
 	f[i]=t[i];
-
+*/
 delete(g);
 delete(h);
 delete(t);
@@ -91,6 +111,7 @@ Wavelet::Wavelet(Channel<analogic> *CH_IN,Channel<analogic> *CH_OUT, unsigned N,
 	NSamples=N;
 	Method=Met;
 	}
+	
 
 
 void Wavelet::Leafs(unsigned char ad, unsigned Nad,unsigned Level){
@@ -221,10 +242,180 @@ void Wavelet::Run(){
 	if(Method==WAVELET_RMS)
 		Output->insert_Value(sqrt(tmp/NSamples));
 	if(Method==WAVELET_ENERGY)
-		Output->insert_Value(tmp/NSamples);
+		Output->insert_Value(tmp);
+	if(Method==WAVELET_ENERGY_PER){
+		double tmp2=0;
+		for(unsigned k=0;k<NSamples;k++)
+			tmp2+=pow(Input->get_Value(k),2);
+		Output->insert_Value(100*tmp/tmp2);
+		}
 	
 	delete(S);
 	}
+	
+WaveletMat::WaveletMat(Channel<analogic> *CH_IN,Channel<analogic> *CH_OUT, unsigned N, unsigned Family, unsigned Met){
+	FunctionalDescription_set("Wavelet"); 
+	Input=CH_IN;
+	Output=CH_OUT;
+	FamilyName=Family;
+	NSamples=N;
+	Method=Met;
+		cout<<"2"<<endl;
+	}
+
+
+
+
+void WaveletMat::Run(){
+//	Vanalogic V;
+	int N=2*ceil((NSamples+FilterBank.size()-1)/2);
+	
+	vector<double> S;
+	for(unsigned k=0;k<NSamples;k++)
+		S.push_back(Input->get_Value(k));
+	Transformada_Wavelet(S,0, S.size());
+	
+for(int i=0;i<S.size();i++)
+		cout<<" S["<<i<<"]="<<S[i];
+cout<<endl;	
+
+	Transformada_Wavelet(S,S.size()/2,S.size()/2);
+	
+for(int i=0;i<S.size();i++)
+		cout<<" S["<<i<<"]="<<S[i];
+cout<<endl;	
+
+
+	Transformada_Wavelet(S,S.size()/2,S.size()/2);
+	
+for(int i=0;i<S.size();i++)
+		cout<<" S["<<i<<"]="<<S[i];
+cout<<endl;	
+
+/*	double tmp1=0;
+	for(unsigned k=NSamples/2;k<NSamples;k++)
+				tmp1+=pow(S[k],2);
+	if(Method==WAVELET_RMS)
+		Output->insert_Value(sqrt(tmp1/NSamples));
+	if(Method==WAVELET_ENERGY)
+		Output->insert_Value(tmp1);
+	if(Method==WAVELET_ENERGY_PER){
+		double tmp2=0;
+		for(unsigned k=0;k<NSamples;k++)
+			tmp2+=pow(Input->get_Value(k),2);
+		Output->insert_Value(100*tmp1/tmp2);
+		}
+	cout<<"2"<<endl;*/
+	}	
+	
+	
+void WaveletMat::Transformada_Wavelet(vector<double>& f, int Begin, int Nsamples)
+{
+	int ch=FilterBank.size();
+	int cg=ch;
+	int M=FilterBank.size()+Nsamples-1;
+	vector<double> cD,cA;
+	
+	double *g=new double[FilterBank.size()];
+	double *h=new double[FilterBank.size()];
+	double *F=new double[M];
+	double *G=new double[M];
+	double tmp;
+	
+/*	
+	cout<<"M:"<<M  <<"Filter:"<<FilterBank.size()<<" Signal:"<<Nsamples<<endl;
+		cout<<"f ";	
+		for (int i=Begin; i<Nsamples+Begin; i++){
+			cout<< f[i]<<" ";
+		}
+cout<<endl;*/
+	for(int i=0;i<FilterBank.size();i++)
+		g[i]=FilterBank[FilterBank.size()-i-1];
+	for(int i=0;i<FilterBank.size();i++){
+	        h[i]=g[ch-i-1];
+		if(i%2==0)
+			h[i]*=-1;
+		}
+		
+		
+/*			for(int k=0;k<FilterBank.size();k++){
+			printf("g[%d]=%lf ",k,g[k]);
+		}
+		printf("\n");
+		for(int k=0;k<FilterBank.size();k++){
+			printf("h[%d]=%lf ",k,h[k]);
+		}
+		*/
+	
+		
+//cout<<"F ";
+int i1;
+	for (int i=0; i<M; i++){
+		i1 = i;
+		tmp = 0.0;
+		for (int j=0; j<FilterBank.size(); j++)
+		{
+			if(i1>=0 && i1<Nsamples)
+				tmp = tmp + (f[i1+Begin]*g[j]);
+			i1 = i1-1;
+			F[i] = tmp;
+		}
+				//	cout<<"F["<<i<<"] "<< F[i]<<" ";
+	}
+//	cout<<endl;
+//cout<<"G ";	
+		for (int i=0; i<M; i++){
+		i1 = i;
+		tmp = 0.0;
+		for (int j=0; j<FilterBank.size(); j++)
+		{
+			if(i1>=0 && i1<Nsamples)
+				tmp = tmp + (f[i1+Begin]*h[j]);
+			i1 = i1-1;
+			G[i] = tmp;
+		
+		}
+		//	cout<< G[i]<<" ";
+			
+	}
+	
+//cout<<endl;
+
+
+for (int i=0; i<M; i=i+2){
+	cA.push_back(F[i+1]);
+	cD.push_back(G[i+1]);
+}
+f.resize(floor(M/2)*2);
+
+for (int i=0; i<floor(M/2); i++){
+	f[i]=cA[i];
+}
+
+for (int i=0; i<floor(M/2); i++){
+	f[i+floor(M/2)]=cD[i];
+}
+/*
+for (int i=0; i<floor(M/2); i++){
+	cout<<" cA["<<i<<"]="<<cA[i];
+	}
+cout<<endl;	
+for (int i=0; i<floor(M/2); i++){
+	cout<<" cD["<<i<<"]="<<cD[i];
+	}
+cout<<endl;
+
+for(int i=0;i<f.size();i++)
+		cout<<" S["<<i<<"]="<<f[i];
+cout<<endl;		
+	*/
+delete(g);
+delete(h);
+//delete(t);
+
+}
+	
+
 
 bool Wavelet::getFilterBank(){
 
